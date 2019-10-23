@@ -1,0 +1,95 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title></title>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+  <link rel="import" href="../../elements/codelab.html">
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <style>
+    body {
+      font-family: "Roboto",sans-serif;
+    }
+  </style>
+  
+</head>
+<body unresolved class="fullbleed">
+
+  <google-codelab title=""
+                  environment="web"
+                  feedback-link="https://github.com/googlecodelabs/your-first-pwapp/issues">
+    
+      <google-codelab-step label="Paso 1: Crear contenedor" duration="0">
+        <p>lxc launch ubuntu:18.04 (Nombre Contenedor)</p>
+<p>lxc start (Nombre Contenedor)</p>
+<p>lxc exec (Nombre Contenedor) bash</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Paso 2: Crear directorio y descargar pydio" duration="0">
+        <p>Creamos un directorio para pydio, nos posicionamos en la carpeta creada, descargamos pydio y lo extraemos</p>
+<p>sudo mkdir pydio &amp;&amp; cd pydio &amp;&amp; apt install unzip &amp;&amp; wget <a href="https://download.pydio.com/pub/cells/release/1.6.1/linux-amd64/pydio-cells-1.6.1-linux-amd64.zip" target="_blank">https://download.pydio.com/pub/cells/release/1.6.1/linux-amd64/pydio-cells-1.6.1-linux-amd64.zip</a> &amp;&amp; unzip pydio-cells-1.6.1-linux-amd64.zip &amp;&amp; chmod u+x pydio-cells-1.6.1-linux-amd64.zip</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Paso 3: Ejecutar y primeros pasos" duration="0">
+        <p>Es importante destacar que es necesario instalar mysql, la más probable es que ya esté instalado, pero si no, usaremos:</p>
+<p>sudo apt install mysql-server</p>
+<p>Habilitamos el servicio e iniciamos mysql:</p>
+<p>sudo systemctl enable mysql</p>
+<p>sudo system start mysql</p>
+<p>Entramos en mysql:</p>
+<p>mysql -u root -p</p>
+<p>Configuramos una base de datos con un usuario:</p>
+<p>CREATE USER &#39;Usuario&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;Contraseña&#39;;</p>
+<p>CREATE DATABASE cells;</p>
+<p>GRANT ALL PRIVILEGES ON cells.* to &#39;Usuario&#39;@&#39;localhost&#39;;</p>
+<p>FLUSH PRIVILEGES;</p>
+<p>EXIT</p>
+<p>Concedemos permisos de ejecución al binario:</p>
+<p>chmod +x cells</p>
+<p>chmod +x cells-ctl</p>
+<p>Dependiendo del entorno que tengamos ejecutaremos cells o cells-ctl, en este caso usaremos cells-ctl, para ello:</p>
+<p>./cells-ctl</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-49880327-14', 'auto');
+
+    (function() {
+      var gaCodelab = 'UA-52746336-1';
+      if (gaCodelab) {
+        ga('create', gaCodelab, 'auto', {name: 'codelab'});
+      }
+
+      var gaView;
+      var parts = location.search.substring(1).split('&');
+      for (var i = 0; i < parts.length; i++) {
+        var param = parts[i].split('=');
+        if (param[0] === 'viewga') {
+          gaView = param[1];
+          break;
+        }
+      }
+      if (gaView && gaView !== gaCodelab) {
+        ga('create', gaView, 'auto', {name: 'view'});
+      }
+    })();
+  </script>
+
+</body>
+</html>
