@@ -27,18 +27,41 @@
                   environment="web"
                   feedback-link="https://github.com/googlecodelabs/your-first-pwapp/issues">
     
-      <google-codelab-step label="Paso 1" duration="0">
-        <p>instalar contenedor</p>
-<pre><code>lxc launch ubuntu:18.04</code></pre>
+      <google-codelab-step label="Paso 1: Crear contenedor" duration="0">
+        <pre>lxc launch ubuntu:18.04 (Nombre Contenedor)
+lxc start (Nombre Contenedor)
+lxc exec (Nombre Contenedor) bash</pre>
 
 
       </google-codelab-step>
     
-      <google-codelab-step label="Paso 2" duration="0">
-        <p>Descarga este programa</p>
-<p><a href="https://darksky.net/dev/register" target="_blank"><paper-button class="colored" raised>Register for API Key</paper-button></a></p>
-<p>instalar contenedor</p>
-<aside class="warning"><p>Advertencia: recerada la contraseña q</p>
+      <google-codelab-step label="Paso 2: Crear directorio y descargar pydio" duration="0">
+        <p>Creamos un directorio para pydio, nos posicionamos en la carpeta creada, descargamos pydio y lo extraemos</p>
+<pre>sudo mkdir pydio &amp;&amp; cd pydio &amp;&amp; apt install unzip &amp;&amp; wget https://download.pydio.com/pub/cells/release/1.6.1/linux-amd64/pydio-cells-1.6.1-linux-amd64.zip &amp;&amp; unzip pydio-cells-1.6.1-linux-amd64.zip &amp;&amp; chmod u+x pydio-cells-1.6.1-linux-amd64.zip</pre>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Paso 3: Ejecutar y primeros pasos" duration="0">
+        <p>Es importante destacar que es necesario instalar mysql, la más probable es que ya esté instalado, pero si no, usaremos:</p>
+<pre>sudo apt install mysql-server</pre>
+<p>Habilitamos el servicio e iniciamos mysql:</p>
+<pre>sudo systemctl enable mysql
+sudo system start mysql</pre>
+<p>Entramos en mysql:</p>
+<pre>mysql -u root -p</pre>
+<p>Configuramos una base de datos con un usuario:</p>
+<pre>CREATE USER &#39;Usuario&#39;@&#39;localhost&#39; IDENTIFIED BY &#39;Contraseña&#39;;
+CREATE DATABASE cells;
+GRANT ALL PRIVILEGES ON cells.* to &#39;Usuario&#39;@&#39;localhost&#39;;
+FLUSH PRIVILEGES;
+EXIT</pre>
+<p>Concedemos permisos de ejecución al binario:</p>
+<pre>chmod +x cells
+chmod +x cells-ctl</pre>
+<p>Dependiendo del entorno que tengamos ejecutaremos cells o cells-ctl, en este caso usaremos cells-ctl, para ello:</p>
+<pre>./cells-ctl</pre>
+<aside class="warning"><p>Recuerda el paswrd</p>
 </aside>
 
 
